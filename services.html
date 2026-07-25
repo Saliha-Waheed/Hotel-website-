@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services · Hotel Lux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================
+               PROFESSIONAL COLOR SCHEME
+               ============================================ */
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E8D5A3;
+            --gold-dark: #A8893A;
+            --navy: #1A2332;
+            --navy-light: #2C3E50;
+            --cream: #F8F5F0;
+            --white: #FFFFFF;
+            --dark: #0D1421;
+            --text: #2C3E50;
+            --text-light: #6B7A8A;
+            --shadow: 0 8px 30px rgba(26, 35, 50, 0.12);
+            --shadow-hover: 0 15px 50px rgba(26, 35, 50, 0.2);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+               HEADER
+               ============================================ */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            transition: var(--transition);
+        }
+
+        .main-header.scrolled {
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-menu ul li a:hover::after,
+        .nav-menu ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu ul li a.active {
+            color: var(--gold);
+        }
+
+        .nav-login {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark)) !important;
+            color: white !important;
+            padding: 10px 24px !important;
+            border-radius: 50px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .nav-login::after {
+            display: none !important;
+        }
+
+        .nav-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(201, 168, 76, 0.4) !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--navy);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* ============================================
+               PAGE HEADER
+               ============================================ */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            color: var(--white);
+            padding: 160px 0 60px;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header .badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.15);
+            color: var(--gold-light);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 span {
+            color: var(--gold);
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        /* ============================================
+               SERVICES SECTION
+               ============================================ */
+        .services-section {
+            padding: 60px 0 90px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px 30px 35px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid rgba(201, 168, 76, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            transform: scaleX(0);
+            transition: var(--transition);
+            transform-origin: left;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-card .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.05));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+            font-size: 32px;
+            color: var(--gold);
+        }
+
+        .service-card:hover .icon-wrapper {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: white;
+            transform: scale(1.05) rotate(-5deg);
+        }
+
+        .service-card .service-number {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 48px;
+            font-weight: 700;
+            color: rgba(201, 168, 76, 0.05);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .service-card .features-list {
+            list-style: none;
+            text-align: left;
+            padding: 0;
+            margin-top: 12px;
+        }
+
+        .service-card .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-light);
+            padding: 4px 0;
+        }
+
+        .service-card .features-list li i {
+            color: var(--gold);
+            font-size: 14px;
+            width: 18px;
+        }
+
+        .service-card .btn-service {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 8px 24px;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .service-card .btn-service:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* ============================================
+               FEATURES SECTION
+               ============================================ */
+        .features-section {
+            background: var(--white);
+            padding: 70px 0;
+        }
+
+        .features-section .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .features-section .section-header .badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--gold);
+            padding: 4px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .features-section .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            color: var(--navy);
+        }
+
+        .features-section .section-header h2 span {
+            color: var(--gold);
+        }
+
+        .features-section .section-header p {
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 8px auto 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--cream);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-box .feature-icon {
+            font-size: 36px;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .feature-box h4 {
+            font-size: 16px;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .feature-box p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* ============================================
+               CTA SECTION
+               ============================================ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 70px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .cta-section h2 span {
+            color: var(--gold);
+        }
+
+        .cta-section p {
+            opacity: 0.7;
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(201, 168, 76, 0.45);
+        }
+
+        /* ============================================
+               FOOTER
+               ============================================ */
+        .main-footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+            font-size: 26px;
+        }
+
+        .footer-brand p {
+            margin: 12px 0 20px;
+            max-width: 300px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        .footer-brand .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-brand .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-brand .social-icons a:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-grid h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .footer-grid ul {
+            list-style: none;
+        }
+
+        .footer-grid ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-grid ul li a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-grid ul li a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 24px 0;
+            font-size: 13px;
+            opacity: 0.4;
+        }
+
+        /* ============================================
+               RESPONSIVE
+               ============================================ */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                transition: all 0.4s ease;
+                overflow-y: auto;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu ul {
+                flex-direction: column;
+                padding: 30px 24px;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .nav-menu ul li {
+                width: 100%;
+            }
+
+            .nav-menu ul li a {
+                display: block;
+                padding: 10px 0;
+                font-size: 16px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 30px 20px 25px;
+            }
+
+            .service-card .icon-wrapper {
+                width: 60px;
+                height: 60px;
+                font-size: 26px;
+            }
+
+            .service-card h3 {
+                font-size: 19px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand .social-icons {
+                justify-content: center;
+            }
+
+            .cta-section h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 24px 16px 20px;
+            }
+
+            .service-card .service-number {
+                font-size: 36px;
+            }
+
+            .cta-section h2 {
+                font-size: 24px;
+            }
+
+            .cta-section p {
+                font-size: 15px;
+            }
+
+            .btn-primary {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header" id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                    <span class="logo-text">HOTEL <span>· LUX</span></span>
+                </a>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="room-details.html">Room Details</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="nav-login"><i class="fas fa-user"></i> Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+        <div class="container">
+            <span class="badge">✦ Premium Amenities</span>
+            <h1>Our <span>Services</span></h1>
+            <p>World-class amenities designed for your ultimate comfort and pleasure</p>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+
+                <!-- Service 1 - Spa & Wellness -->
+                <div class="service-card">
+                    <span class="service-number">01</span>
+                    <div class="icon-wrapper"><i class="fas fa-spa"></i></div>
+                    <h3>Luxury Spa & Wellness</h3>
+                    <p>Rejuvenate your mind, body, and soul with our signature treatments and therapies.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Signature Massages</li>
+                        <li><i class="fas fa-check-circle"></i> Facial Treatments</li>
+                        <li><i class="fas fa-check-circle"></i> Aromatherapy</li>
+                        <li><i class="fas fa-check-circle"></i> Steam & Sauna</li>
+                    </ul>
+                    <a href="booking.html" class="btn-service">Book Now</a>
+                </div>
+
+                <!-- Service 2 - Fine Dining -->
+                <div class="service-card">
+                    <span class="service-number">02</span>
+                    <div class="icon-wrapper"><i class="fas fa-utensils"></i></div>
+                    <h3>Fine Dining Experience</h3>
+                    <p>Exquisite culinary creations by world-class chefs using the finest ingredients.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Michelin-Star Cuisine</li>
+                        <li><i class="fas fa-check-circle"></i> Private Dining Rooms</li>
+                        <li><i class="fas fa-check-circle"></i> Wine Pairings</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Room Service</li>
+                    </ul>
+                    <a href="booking.html" class="btn-service">Book Now</a>
+                </div>
+
+                <!-- Service 3 - Pool & Fitness -->
+                <div class="service-card">
+                    <span class="service-number">03</span>
+                    <div class="icon-wrapper"><i class="fas fa-swimmer"></i></div>
+                    <h3>Pool & Fitness Center</h3>
+                    <p>State-of-the-art facilities to keep you active and refreshed during your stay.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Infinity Pool</li>
+                        <li><i class="fas fa-check-circle"></i> Modern Gym Equipment</li>
+                        <li><i class="fas fa-check-circle"></i> Personal Trainers</li>
+                        <li><i class="fas fa-check-circle"></i> Yoga Classes</li>
+                    </ul>
+                    <a href="booking.html" class="btn-service">Book Now</a>
+                </div>
+
+                <!-- Service 4 - Concierge -->
+                <div class="service-card">
+                    <span class="service-number">04</span>
+                    <div class="icon-wrapper"><i class="fas fa-concierge-bell"></i></div>
+                    <h3>24/7 Concierge Service</h3>
+                    <p>Our dedicated team is always available to assist with any request or need.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Personalized Assistance</li>
+                        <li><i class="fas fa-check-circle"></i> Tour & Activity Booking</li>
+                        <li><i class="fas fa-check-circle"></i> Transportation Services</li>
+                        <li><i class="fas fa-check-circle"></i> Restaurant Reservations</li>
+                    </ul>
+                    <a href="booking.html" class="btn-service">Book Now</a>
+                </div>
+
+                <!-- Service 5 - Events & Weddings -->
+                <div class="service-card">
+                    <span class="service-number">05</span>
+                    <div class="icon-wrapper"><i class="fas fa-glass-cheers"></i></div>
+                    <h3>Events & Weddings</h3>
+                    <p>Create unforgettable memories with our premium event planning and catering services.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Wedding Packages</li>
+                        <li><i class="fas fa-check-circle"></i> Corporate Events</li>
+                        <li><i class="fas fa-check-circle"></i> Private Celebrations</li>
+                        <li><i class="fas fa-check-circle"></i> Custom Catering</li>
+                    </ul>
+                    <a href="booking.html" class="btn-service">Book Now</a>
+                </div>
+
+                <!-- Service 6 - Business Center -->
+                <div class="service-card">
+                    <span class="service-number">06</span>
+                    <div class="icon-wrapper"><i class="fas fa-briefcase"></i></div>
+                    <h3>Business Center</h3>
+                    <p>Fully-equipped facilities for business travelers, meetings, and conferences.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Meeting Rooms</li>
+                        <li><i class="fas fa-check-circle"></i> Conference Facilities</li>
+                        <li><i class="fas fa-check-circle"></i> High-Speed Internet</li>
+                        <li><i class="fas fa-check-circle"></i> Secretarial Services</li>
+                    </ul>
+                    <a href="booking.html" class="btn-service">Book Now</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">✦ Premium Amenities</span>
+                <h2>Everything You <span>Need</span></h2>
+                <p>Complimentary amenities included with every stay</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+                    <h4>Free High-Speed WiFi</h4>
+                    <p>Stay connected throughout the hotel</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-parking"></i></div>
+                    <h4>Complimentary Parking</h4>
+                    <p>Secure valet parking service</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-coffee"></i></div>
+                    <h4>Daily Breakfast</h4>
+                    <p>Delicious buffet to start your day</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-child"></i></div>
+                    <h4>Kids Stay Free</h4>
+                    <p>Children under 12 stay free</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-plane"></i></div>
+                    <h4>Airport Transfer</h4>
+                    <p>Luxury shuttle service available</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-laundry"></i></div>
+                    <h4>Laundry Service</h4>
+                    <p>Same-day dry cleaning available</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-tv"></i></div>
+                    <h4>Smart Entertainment</h4>
+                    <p>Streaming services in all rooms</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>24/7 Security</h4>
+                    <p>Round-the-clock security service</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Experience <span>Luxury?</span></h2>
+            <p>Book your stay today and enjoy all our premium services</p>
+            <a href="booking.html" class="btn-primary">Book Your Stay</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <span class="logo-text">HOTEL <span>· LUX</span></span>
+                <p>Luxury hospitality since 2010. Creating unforgettable experiences for our guests around the world.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="rooms.html">Our Rooms</a></li>
+                    <li><a href="booking.html">Book Now</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Spa & Wellness</a></li>
+                    <li><a href="services.html">Fine Dining</a></li>
+                    <li><a href="services.html">Events</a></li>
+                    <li><a href="services.html">Concierge</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-phone" style="color:var(--gold);"></i> +1 234 567 890</li>
+                    <li><i class="fas fa-envelope" style="color:var(--gold);"></i> info@hotellux.com</li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> 123 Luxury Ave, NYC</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hotel Lux · All rights reserved. Crafted with <i class="fas fa-heart" style="color:var(--gold);"></i></p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ============================================
+        // SERVICES PAGE JAVASCRIPT
+        // ============================================
+
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+        // ===== HEADER SCROLL EFFECT =====
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const cards = document.querySelectorAll('.service-card, .feature-box');
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px'
+        });
+
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s ease ${index * 0.08}s`;
+            cardObserver.observe(card);
+        });
+
+        // ===== SERVICE CARD NUMBER ANIMATION =====
+        const serviceNumbers = document.querySelectorAll('.service-number');
+        serviceNumbers.forEach((num, index) => {
+            num.style.transition = 'all 0.3s ease';
+            num.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2)';
+                this.style.color = 'rgba(201, 168, 76, 0.15)';
+            });
+            num.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.color = 'rgba(201, 168, 76, 0.05)';
+            });
+        });
+
+        console.log('Services page loaded successfully!');
+    </script>
+</body>
+</html>

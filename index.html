@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Lux · Luxury Hotel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================
+               PROFESSIONAL COLOR SCHEME
+               ============================================ */
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E8D5A3;
+            --gold-dark: #A8893A;
+            --navy: #1A2332;
+            --navy-light: #2C3E50;
+            --cream: #F8F5F0;
+            --white: #FFFFFF;
+            --dark: #0D1421;
+            --text: #2C3E50;
+            --text-light: #6B7A8A;
+            --shadow: 0 8px 30px rgba(26, 35, 50, 0.12);
+            --shadow-hover: 0 15px 50px rgba(26, 35, 50, 0.2);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+
+        /* ============================================
+               HEADER
+               ============================================ */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            transition: var(--transition);
+        }
+
+        .main-header.scrolled {
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-menu ul li a:hover::after,
+        .nav-menu ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu ul li a.active {
+            color: var(--gold);
+        }
+/* ============================================
+   NAVIGATION - FIXED
+   ============================================ */
+
+/* ---- Navigation Container ---- */
+.nav-menu ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    transition: all 0.3s ease;
+    position: relative;
+    letter-spacing: 0.3px;
+    padding: 5px 0;
+}
+
+/* ---- Underline Effect ---- */
+.nav-menu ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-menu ul li a:hover::after,
+.nav-menu ul li a.active::after {
+    width: 100%;
+}
+
+.nav-menu ul li a.active {
+    color: var(--gold);
+}
+
+.nav-menu ul li a:hover {
+    color: var(--gold);
+}
+
+/* ---- LOGIN BUTTON (Gold Filled) ---- */
+.nav-btn {
+    padding: 8px 22px !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    transition: all 0.3s ease !important;
+}
+
+.nav-btn i {
+    margin-right: 6px;
+}
+
+.nav-btn::after {
+    display: none !important;
+}
+
+.nav-login {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark)) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+}
+
+.nav-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(201, 168, 76, 0.4) !important;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold)) !important;
+    color: white !important;
+}
+
+/* ---- REGISTER BUTTON (Outline) ---- */
+.nav-register {
+    background: transparent !important;
+    color: var(--gold) !important;
+    border: 2px solid var(--gold) !important;
+}
+
+.nav-register:hover {
+    background: var(--gold) !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3) !important;
+}
+
+/* ============================================
+   HAMBURGER MENU
+   ============================================ */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: transparent;
+    border: none;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 2.5px;
+    background: var(--navy);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--white);
+        transition: all 0.4s ease;
+        overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        padding: 30px 24px;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    .nav-menu ul li {
+        width: 100%;
+    }
+
+    .nav-menu ul li a {
+        display: block;
+        padding: 12px 0;
+        font-size: 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        color: var(--text);
+        background: transparent !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .nav-menu ul li a::after {
+        display: none !important;
+    }
+
+    .nav-menu ul li a:hover {
+        color: var(--gold) !important;
+    }
+
+    /* ---- Mobile - Login Button ---- */
+    .nav-login {
+        background: transparent !important;
+        color: var(--text) !important;
+        padding: 12px 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+        border-radius: 0 !important;
+    }
+
+    .nav-login:hover {
+        background: transparent !important;
+        color: var(--gold) !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border-bottom-color: var(--gold) !important;
+    }
+
+    /* ---- Mobile - Register Button ---- */
+    .nav-register {
+        background: transparent !important;
+        color: var(--text) !important;
+        padding: 12px 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+        border-radius: 0 !important;
+    }
+
+    .nav-register:hover {
+        background: transparent !important;
+        color: var(--gold) !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border-bottom-color: var(--gold) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu ul li a {
+        font-size: 15px;
+        padding: 10px 0;
+    }
+
+    .nav-login,
+    .nav-register {
+        font-size: 15px !important;
+        padding: 10px 0 !important;
+    }
+}
+        
+        
+        .hamburger span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--navy);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* ============================================
+               HERO SECTION
+               ============================================ */
+        .hero {
+            margin-top: 70px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            overflow: hidden;
+            padding: 80px 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -20px) scale(1.1); }
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content .badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.15);
+            color: var(--gold-light);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 16px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-content h1 span {
+            color: var(--gold);
+            position: relative;
+        }
+
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: rgba(201, 168, 76, 0.2);
+            border-radius: 4px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 480px;
+            margin-bottom: 32px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(201, 168, 76, 0.45);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 32px;
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+
+        .hero-stats .stat h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .hero-stats .stat p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 0.8s ease 0.4s both;
+        }
+
+        .hero-image .image-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .hero-image .image-card .main-image {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            background: #1A2332;
+        }
+
+        .hero-image .image-card .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-image .image-card .main-image .featured-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 14px;
+            opacity: 0.5;
+            background: rgba(0,0,0,0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: var(--border-radius);
+            padding: 16px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(2) {
+            top: 20px;
+            right: -20px;
+            animation-delay: 1s;
+        }
+
+        .floating-card:nth-child(3) {
+            bottom: 40px;
+            left: -30px;
+            animation-delay: 2s;
+        }
+
+        .floating-card .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(201, 168, 76, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .floating-card .text h5 {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .floating-card .text p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            margin: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ============================================
+               ROOMS PREVIEW
+               ============================================ */
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header .badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--gold);
+            padding: 4px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            color: var(--navy);
+        }
+
+        .section-header h2 span {
+            color: var(--gold);
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 8px auto 0;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .room-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(201, 168, 76, 0.05);
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .room-card .room-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            background: #1A2332;
+        }
+
+        .room-card .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .room-card:hover .room-image img {
+            transform: scale(1.05);
+        }
+
+        .room-card .room-image .price-tag {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--gold);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .room-card .room-image .room-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: rgba(255,255,255,0.05);
+            z-index: 0;
+        }
+
+        .room-card .room-info {
+            padding: 24px 24px 28px;
+        }
+
+        .room-card .room-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .room-card .room-info .room-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+
+        .room-card .room-info .room-features {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .room-card .room-info .room-features span {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .room-card .room-info .room-features span i {
+            color: var(--gold);
+            margin-right: 4px;
+        }
+
+        .room-card .room-info .btn-outline-sm {
+            display: inline-block;
+            padding: 8px 24px;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .room-card .room-info .btn-outline-sm:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* ============================================
+               SERVICES PREVIEW
+               ============================================ */
+        .services-section {
+            background: var(--cream);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .service-item:hover {
+            transform: translateY(-6px);
+            border-bottom-color: var(--gold);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-item .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.05));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 26px;
+            color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .service-item:hover .icon {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .service-item h4 {
+            font-size: 16px;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .service-item p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* ============================================
+               GALLERY PREVIEW
+               ============================================ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            background: #1A2332;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(201, 168, 76, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-item .overlay i {
+            color: white;
+            font-size: 30px;
+            opacity: 0.8;
+        }
+
+        .gallery-item:nth-child(1) { height: 250px; }
+        .gallery-item:nth-child(2) { height: 180px; }
+        .gallery-item:nth-child(3) { height: 220px; }
+        .gallery-item:nth-child(4) { height: 200px; }
+
+        /* ============================================
+               TESTIMONIALS
+               ============================================ */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px 28px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(201, 168, 76, 0.05);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-card .stars {
+            color: var(--gold);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 15px;
+            color: var(--text);
+            font-style: italic;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-card .author .avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(201, 168, 76, 0.05));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .testimonial-card .author .info h5 {
+            font-size: 14px;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .testimonial-card .author .info p {
+            font-size: 12px;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* ============================================
+               CTA
+               ============================================ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .cta-section h2 span {
+            color: var(--gold);
+        }
+
+        .cta-section p {
+            opacity: 0.7;
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* ============================================
+               FOOTER
+               ============================================ */
+        .main-footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 70px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+            font-size: 26px;
+        }
+
+        .footer-brand p {
+            margin: 12px 0 20px;
+            max-width: 300px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        .footer-brand .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-brand .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-brand .social-icons a:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-grid h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .footer-grid ul {
+            list-style: none;
+        }
+
+        .footer-grid ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-grid ul li a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-grid ul li a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 24px 0;
+            font-size: 13px;
+            opacity: 0.4;
+        }
+
+        /* ============================================
+               RESPONSIVE
+               ============================================ */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin: 0 auto 32px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-image .image-card .main-image {
+                height: 300px;
+            }
+
+            .floating-card:nth-child(2),
+            .floating-card:nth-child(3) {
+                display: none;
+            }
+
+            .room-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                transition: all 0.4s ease;
+                overflow-y: auto;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu ul {
+                flex-direction: column;
+                padding: 30px 24px;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .nav-menu ul li {
+                width: 100%;
+            }
+
+            .nav-menu ul li a {
+                display: block;
+                padding: 10px 0;
+                font-size: 16px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .hero-stats {
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+
+            .hero-stats .stat h4 {
+                font-size: 22px;
+            }
+
+            .room-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(2),
+            .gallery-item:nth-child(3),
+            .gallery-item:nth-child(4) {
+                height: 150px;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand .social-icons {
+                justify-content: center;
+            }
+
+            .section-header h2 {
+                font-size: 30px;
+            }
+
+            .cta-section h2 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content .badge {
+                font-size: 11px;
+                padding: 4px 14px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-outline {
+                width: 100%;
+                text-align: center;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-item {
+                height: 120px !important;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header" id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                    <span class="logo-text">HOTEL <span>· LUX</span></span>
+                </a>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="room-details.html">Room Details</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="nav-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        <li><a href="register.html" class="nav-register"><i class="fas fa-user-plus"></i> Register</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge">✦ Luxury Redefined</span>
+                <h1>Welcome to <br><span>Hotel Lux</span></h1>
+                <p>Experience elegance, comfort, and world-class hospitality in the heart of the city. Your unforgettable journey begins here.</p>
+                <div class="hero-buttons">
+                    <a href="booking.html" class="btn-primary">Book Your Stay</a>
+                    <a href="rooms.html" class="btn-outline">Explore Rooms</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h4>150+</h4>
+                        <p>Luxury Rooms</p>
+                    </div>
+                    <div class="stat">
+                        <h4>4.8 ★</h4>
+                        <p>Guest Rating</p>
+                    </div>
+                    <div class="stat">
+                        <h4>10K+</h4>
+                        <p>Happy Guests</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-card">
+                    <div class="main-image">
+                        <img src="https://i.pinimg.com/736x/83/f4/6a/83f46af0230735b10d06515e1191f68a.jpg" alt="Hotel Lux" />
+                        <span class="featured-text">✦ Premium Collection</span>
+                    </div>
+                    <div class="floating-card">
+                        <div class="icon"><i class="fas fa-wifi"></i></div>
+                        <div class="text">
+                            <h5>Free WiFi</h5>
+                            <p>High-speed internet</p>
+                        </div>
+                    </div>
+                    <div class="floating-card">
+                        <div class="icon"><i class="fas fa-spa"></i></div>
+                        <div class="text">
+                            <h5>Luxury Spa</h5>
+                            <p>Relax & rejuvenate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROOMS SECTION ===== -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">✦ Our Rooms</span>
+                <h2>Luxury <span>Accommodations</span></h2>
+                <p>Designed for comfort and elegance, each room offers a unique experience</p>
+            </div>
+            <div class="room-grid">
+                <!-- Room 1 - Deluxe Suite -->
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://i.pinimg.com/vwebp/736x/35/b0/79/35b079c70d7acd1c3acc2238c939ba80.webp" alt="Deluxe Suite" />
+                        <span class="price-tag">$299/night</span>
+                        <div class="room-icon"><i class="fas fa-bed"></i></div>
+                    </div>
+                    <div class="room-info">
+                        <h3>Deluxe Suite</h3>
+                        <p class="room-desc">Spacious suite with ocean view, king bed, and private balcony</p>
+                        <div class="room-features">
+                            <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                            <span><i class="fas fa-tv"></i> Smart TV</span>
+                            <span><i class="fas fa-hot-tub"></i> Jacuzzi</span>
+                        </div>
+                        <a href="room-details.html" class="btn-outline-sm">View Details →</a>
+                    </div>
+                </div>
+
+                <!-- Room 2 - Family Room -->
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://i.pinimg.com/736x/e3/56/e2/e356e2b2d422d1f251728abefdd82b9f.jpg" alt="Family Room" />
+                        <span class="price-tag">$249/night</span>
+                        <div class="room-icon"><i class="fas fa-users"></i></div>
+                    </div>
+                    <div class="room-info">
+                        <h3>Family Room</h3>
+                        <p class="room-desc">Perfect for families, with two queen beds and kids' play area</p>
+                        <div class="room-features">
+                            <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                            <span><i class="fas fa-tv"></i> Smart TV</span>
+                            <span><i class="fas fa-utensils"></i> Kitchenette</span>
+                        </div>
+                        <a href="room-details.html" class="btn-outline-sm">View Details →</a>
+                    </div>
+                </div>
+
+                <!-- Room 3 - Penthouse Suite -->
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://i.pinimg.com/736x/db/ab/5e/dbab5e951d006c664c4578fd9a26c54e.jpg" alt="Penthouse Suite" />
+                        <span class="price-tag">$599/night</span>
+                        <div class="room-icon"><i class="fas fa-crown"></i></div>
+                    </div>
+                    <div class="room-info">
+                        <h3>Penthouse Suite</h3>
+                        <p class="room-desc">Ultimate luxury with private terrace, panoramic views, and butler service</p>
+                        <div class="room-features">
+                            <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                            <span><i class="fas fa-tv"></i> Smart TV</span>
+                            <span><i class="fas fa-concierge-bell"></i> Butler Service</span>
+                        </div>
+                        <a href="room-details.html" class="btn-outline-sm">View Details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section class="section services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">✦ Services</span>
+                <h2>World-Class <span>Amenities</span></h2>
+                <p>Everything you need for a perfect stay</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="icon"><i class="fas fa-spa"></i></div>
+                    <h4>Luxury Spa</h4>
+                    <p>Rejuvenate with signature treatments</p>
+                </div>
+                <div class="service-item">
+                    <div class="icon"><i class="fas fa-utensils"></i></div>
+                    <h4>Fine Dining</h4>
+                    <p>World-class culinary experiences</p>
+                </div>
+                <div class="service-item">
+                    <div class="icon"><i class="fas fa-swimmer"></i></div>
+                    <h4>Infinity Pool</h4>
+                    <p>Stunning views while you swim</p>
+                </div>
+                <div class="service-item">
+                    <div class="icon"><i class="fas fa-dumbbell"></i></div>
+                    <h4>Fitness Center</h4>
+                    <p>State-of-the-art gym facilities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY SECTION ===== -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">✦ Gallery</span>
+                <h2>Visual <span>Tour</span></h2>
+                <p>A glimpse into our world of luxury</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/a3/f5/4f/a3f54fb50bc745d28df1d2d6db29cd1d.jpg" alt="Hotel Lobby" />
+                    <div class="overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/b4/50/52/b45052ab6933bea06ca451380a31b5a6.jpg" alt="Hotel Room" />
+                    <div class="overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/65/80/29/658029a31b134a045200331b32976459.jpg" alt="Hotel Pool" />
+                    <div class="overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/1200x/ea/08/03/ea08032b6d7e0a090cebd8b4d42ab675.jpg" alt="Hotel Dining" />
+                    <div class="overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:30px;">
+                <a href="gallery.html" class="btn-primary">View Full Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="section" style="background: var(--cream);">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">✦ Testimonials</span>
+                <h2>What Our <span>Guests Say</span></h2>
+                <p>Real experiences from real people</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Absolutely incredible experience! The service was impeccable and the room was stunning. Will definitely be coming back."</blockquote>
+                    <div class="author">
+                        <div class="avatar">JD</div>
+                        <div class="info">
+                            <h5>John Doe</h5>
+                            <p>Business Traveler</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"The best hotel experience of my life. The spa, the food, the view - everything was perfect. Highly recommend!"</blockquote>
+                    <div class="author">
+                        <div class="avatar">SM</div>
+                        <div class="info">
+                            <h5>Sarah Mitchell</h5>
+                            <p>Vacationer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Outstanding hospitality! The staff went above and beyond to make our stay special. A true 5-star experience."</blockquote>
+                    <div class="author">
+                        <div class="avatar">RK</div>
+                        <div class="info">
+                            <h5>Robert King</h5>
+                            <p>Family Traveler</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready for a <span>Luxury Experience?</span></h2>
+            <p>Book your stay today and discover why Hotel Lux is the preferred choice</p>
+            <a href="booking.html" class="btn-primary">Book Your Stay</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <span class="logo-text">HOTEL <span>· LUX</span></span>
+                <p>Luxury hospitality since 2010. Creating unforgettable experiences for our guests around the world.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="rooms.html">Our Rooms</a></li>
+                    <li><a href="booking.html">Book Now</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Spa & Wellness</a></li>
+                    <li><a href="services.html">Fine Dining</a></li>
+                    <li><a href="services.html">Events</a></li>
+                    <li><a href="services.html">Concierge</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-phone" style="color:var(--gold);"></i> +1 234 567 890</li>
+                    <li><i class="fas fa-envelope" style="color:var(--gold);"></i> info@hotellux.com</li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> 123 Luxury Ave, NYC</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hotel Lux · All rights reserved. Crafted with <i class="fas fa-heart" style="color:var(--gold);"></i></p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+        // ===== HEADER SCROLL EFFECT =====
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const cards = document.querySelectorAll('.room-card, .service-item, .testimonial-card, .gallery-item');
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px'
+        });
+
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s ease ${index * 0.08}s`;
+            cardObserver.observe(card);
+        });
+
+        // ===== GALLERY ITEMS CLICK =====
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 300);
+            });
+        });
+
+        console.log('Hotel Lux homepage loaded successfully!');
+    </script>
+</body>
+</html>

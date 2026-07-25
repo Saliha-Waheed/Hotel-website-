@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery · Hotel Lux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================
+               PROFESSIONAL COLOR SCHEME
+               ============================================ */
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E8D5A3;
+            --gold-dark: #A8893A;
+            --navy: #1A2332;
+            --navy-light: #2C3E50;
+            --cream: #F8F5F0;
+            --white: #FFFFFF;
+            --dark: #0D1421;
+            --text: #2C3E50;
+            --text-light: #6B7A8A;
+            --shadow: 0 8px 30px rgba(26, 35, 50, 0.12);
+            --shadow-hover: 0 15px 50px rgba(26, 35, 50, 0.2);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+               HEADER
+               ============================================ */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            transition: var(--transition);
+        }
+
+        .main-header.scrolled {
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-menu ul li a:hover::after,
+        .nav-menu ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu ul li a.active {
+            color: var(--gold);
+        }
+
+        .nav-login {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark)) !important;
+            color: white !important;
+            padding: 10px 24px !important;
+            border-radius: 50px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .nav-login::after {
+            display: none !important;
+        }
+
+        .nav-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(201, 168, 76, 0.4) !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--navy);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* ============================================
+               PAGE HEADER
+               ============================================ */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            color: var(--white);
+            padding: 160px 0 60px;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header .badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.15);
+            color: var(--gold-light);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 span {
+            color: var(--gold);
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        /* ============================================
+               GALLERY FILTERS
+               ============================================ */
+        .gallery-filters {
+            padding: 40px 0 30px;
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            background: var(--cream);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        .filter-btn:hover {
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--gold);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .filter-btn .count {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0 8px;
+            border-radius: 50px;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+
+        .filter-btn.active .count {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .gallery-count {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .gallery-count span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* ============================================
+               GALLERY GRID
+               ============================================ */
+        .gallery-section {
+            padding: 50px 0 90px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+            background: var(--navy);
+            transition: var(--transition);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.05s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.15s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.25s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.35s; }
+        .gallery-item:nth-child(8) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(9) { animation-delay: 0.45s; }
+        .gallery-item:nth-child(10) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(11) { animation-delay: 0.55s; }
+        .gallery-item:nth-child(12) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        /* ----- IMAGE CONTAINER (no zoom) ----- */
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            position: relative;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        /* subtle hover scale (only on img, not layout) */
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.03);
+        }
+
+        /* fallback icon (hidden when image is present) */
+        .gallery-image .fallback-icon {
+            position: absolute;
+            font-size: 50px;
+            color: rgba(201, 168, 76, 0.2);
+            pointer-events: none;
+        }
+
+        /* ----- OVERLAY (always on top) ----- */
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.7));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay .category-tag {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.2);
+            backdrop-filter: blur(8px);
+            color: var(--gold-light);
+            padding: 2px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            align-self: flex-start;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+        }
+
+        .gallery-overlay h4 {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .gallery-overlay p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+        }
+
+        .gallery-overlay .zoom-icon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-item:hover .gallery-overlay .zoom-icon {
+            background: var(--gold);
+            transform: scale(1.05);
+        }
+
+        /* ============================================
+               LIGHTBOX
+               ============================================ */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-content .lightbox-image {
+            width: 100%;
+            height: auto;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-content .lightbox-caption {
+            color: white;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .lightbox-content .lightbox-caption h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 2px;
+        }
+
+        .lightbox-content .lightbox-caption p {
+            opacity: 0.6;
+            font-size: 14px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-close:hover {
+            background: #e74c3c;
+            transform: scale(1.05);
+            border-color: #e74c3c;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-nav:hover {
+            background: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .lightbox-nav.prev {
+            left: -70px;
+        }
+
+        .lightbox-nav.next {
+            right: -70px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+               NO RESULTS
+               ============================================ */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+            grid-column: 1 / -1;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results i {
+            font-size: 60px;
+            color: var(--gold);
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .no-results h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .no-results p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* ============================================
+               FOOTER
+               ============================================ */
+        .main-footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+            font-size: 26px;
+        }
+
+        .footer-brand p {
+            margin: 12px 0 20px;
+            max-width: 300px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        .footer-brand .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-brand .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-brand .social-icons a:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-grid h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .footer-grid ul {
+            list-style: none;
+        }
+
+        .footer-grid ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-grid ul li a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-grid ul li a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 24px 0;
+            font-size: 13px;
+            opacity: 0.4;
+        }
+
+        /* ============================================
+               RESPONSIVE
+               ============================================ */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .lightbox-nav.prev { left: 10px; }
+            .lightbox-nav.next { right: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                transition: all 0.4s ease;
+                overflow-y: auto;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            }
+            .nav-menu.active { left: 0; }
+            .nav-menu ul {
+                flex-direction: column;
+                padding: 30px 24px;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            .nav-menu ul li { width: 100%; }
+            .nav-menu ul li a {
+                display: block;
+                padding: 10px 0;
+                font-size: 16px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            }
+            .page-header h1 { font-size: 32px; }
+            .filter-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .filter-buttons { justify-content: center; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand .social-icons { justify-content: center; }
+            .lightbox { padding: 16px; }
+            .lightbox-content .lightbox-image { max-height: 60vh; }
+            .lightbox-close { top: -50px; width: 40px; height: 40px; font-size: 20px; }
+            .lightbox-nav { width: 40px; height: 40px; font-size: 16px; }
+            .lightbox-nav.prev { left: 5px; }
+            .lightbox-nav.next { right: 5px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 26px; }
+            .filter-btn { padding: 6px 14px; font-size: 12px; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .gallery-overlay { padding: 14px; }
+            .gallery-overlay h4 { font-size: 14px; }
+            .gallery-overlay p { font-size: 11px; }
+            .gallery-overlay .zoom-icon { width: 32px; height: 32px; font-size: 13px; top: 10px; right: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header" id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                    <span class="logo-text">HOTEL <span>· LUX</span></span>
+                </a>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="room-details.html">Room Details</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="nav-login"><i class="fas fa-user"></i> Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+        <div class="container">
+            <span class="badge">✦ Visual Tour</span>
+            <h1>Our <span>Gallery</span></h1>
+            <p>A glimpse into the world of luxury at Hotel Lux</p>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY FILTERS ===== -->
+    <section class="gallery-filters">
+        <div class="container">
+            <div class="filter-wrapper">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        All <span class="count">12</span>
+                    </button>
+                    <button class="filter-btn" data-filter="rooms">
+                        Rooms <span class="count">4</span>
+                    </button>
+                    <button class="filter-btn" data-filter="dining">
+                        Dining <span class="count">3</span>
+                    </button>
+                    <button class="filter-btn" data-filter="spa">
+                        Spa <span class="count">3</span>
+                    </button>
+                    <button class="filter-btn" data-filter="facilities">
+                        Facilities <span class="count">3</span>
+                    </button>
+                </div>
+                <div class="gallery-count">
+                    Showing <span id="visibleCount">12</span> photos
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY GRID ===== -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid" id="galleryGrid">
+
+                <!-- ======================================= -->
+                <!-- 1) Deluxe Suite (Rooms) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="rooms">
+                    <div class="gallery-image">
+                        <!-- REPLACE 'src' with your image path -->
+                        <img src="https://i.pinimg.com/736x/84/7b/2e/847b2e3f8c49482318fdaf1212b6749b.jpg" alt="Deluxe Suite" />
+                        <i class="fas fa-bed fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Rooms</span>
+                        <h4>Deluxe Suite</h4>
+                        <p>Spacious luxury bedroom</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 2) Marble Bathroom (Rooms) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="rooms">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/736x/00/62/0c/00620cf6e4515f83b72d9e3f99969d25.jpg" alt="Marble Bathroom" />
+                        <i class="fas fa-bath fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Rooms</span>
+                        <h4>Marble Bathroom</h4>
+                        <p>Luxury spa-inspired design</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 3) Living Area (Rooms) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="rooms">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/736x/4e/6d/4e/4e6d4eb03c6518de8b527b4bd30eab55.jpg" alt="Living Area" />
+                        <i class="fas fa-couch fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Rooms</span>
+                        <h4>Living Area</h4>
+                        <p>Elegant seating and ambiance</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 4) Private Balcony (Rooms) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="rooms">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/736x/a9/bc/51/a9bc51c5acdea4452574b4f89577e4f8.jpg" alt="Private Balcony" />
+                        <i class="fas fa-balcony fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Rooms</span>
+                        <h4>Private Balcony</h4>
+                        <p>Breathtaking ocean views</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 5) Fine Dining (Dining) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="dining">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/736x/bc/9c/99/bc9c99882a8758ee787048d59b6240ec.jpg" alt="Fine Dining" />
+                        <i class="fas fa-utensils fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Dining</span>
+                        <h4>Fine Dining Restaurant</h4>
+                        <p>Exquisite culinary experiences</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 6) Wine Cellar (Dining) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="dining">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/736x/45/6e/82/456e82df1ceb9f81324d2fc7777f94ea.jpg" alt="Wine Cellar" />
+                        <i class="fas fa-wine-glass fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Dining</span>
+                        <h4>Wine Cellar</h4>
+                        <p>Curated selection of fine wines</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 7) Lobby Lounge (Dining) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="dining">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/vwebp/1200x/46/44/53/46445399200e3371860488f02528f088.webp" alt="Lobby Lounge" />
+                        <i class="fas fa-mug-saucer fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Dining</span>
+                        <h4>Lobby Lounge</h4>
+                        <p>Perfect for afternoon tea</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 8) Luxury Spa (Spa) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="spa">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/1200x/2b/e7/85/2be785377bc2f00c5e977c9d70714ccf.jpg" alt="Luxury Spa" />
+                        <i class="fas fa-spa fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Spa</span>
+                        <h4>Luxury Spa</h4>
+                        <p>Rejuvenating wellness treatments</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 9) Hot Tub & Sauna (Spa) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="spa">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/vwebp/1200x/1e/bf/d4/1ebfd4f1fc0596f23807371f22b4e8a9.webp" alt="Hot Tub & Sauna" />
+                        <i class="fas fa-hot-tub fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Spa</span>
+                        <h4>Hot Tub & Sauna</h4>
+                        <p>Relaxation at its finest</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 10) Massage Room (Spa) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="spa">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/736x/b2/06/86/b20686ca8b4680d061c2c91f769a79c6.jpg" alt="Massage Room" />
+                        <i class="fas fa-hand-sparkles fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Spa</span>
+                        <h4>Massage Room</h4>
+                        <p>Expert wellness therapies</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 11) Infinity Pool (Facilities) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="facilities">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/1200x/5f/92/7b/5f927b645db5be8388bf22b27d8d8c83.jpg" alt="Infinity Pool" />
+                        <i class="fas fa-swimmer fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Facilities</span>
+                        <h4>Infinity Pool</h4>
+                        <p>Stunning panoramic views</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 12) Fitness Center (Facilities) -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="facilities">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/736x/b9/1f/0b/b91f0b7fbdaa966e843cb45eb8d60c01.jpg" alt="Fitness Center" />
+                        <i class="fas fa-dumbbell fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Facilities</span>
+                        <h4>Fitness Center</h4>
+                        <p>State-of-the-art equipment</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+                <!-- ======================================= -->
+                <!-- 13) Grand Lobby (Facilities) - extra -->
+                <!-- ======================================= -->
+                <div class="gallery-item" data-category="facilities">
+                    <div class="gallery-image">
+                        <img src="https://i.pinimg.com/736x/f1/50/4d/f1504d471e6c45db8b4807768ba61f67.jpg" alt="Grand Lobby" />
+                        <i class="fas fa-hotel fallback-icon"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="category-tag">✦ Facilities</span>
+                        <h4>Grand Lobby</h4>
+                        <p>Elegant hotel entrance</p>
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults">
+                <i class="fas fa-images"></i>
+                <h3>No Photos Found</h3>
+                <p>Try adjusting your filter criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <span class="logo-text">HOTEL <span>· LUX</span></span>
+                <p>Luxury hospitality since 2010. Creating unforgettable experiences for our guests around the world.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="rooms.html">Our Rooms</a></li>
+                    <li><a href="booking.html">Book Now</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Spa & Wellness</a></li>
+                    <li><a href="services.html">Fine Dining</a></li>
+                    <li><a href="services.html">Events</a></li>
+                    <li><a href="services.html">Concierge</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-phone" style="color:var(--gold);"></i> +1 234 567 890</li>
+                    <li><i class="fas fa-envelope" style="color:var(--gold);"></i> info@hotellux.com</li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> 123 Luxury Ave, NYC</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hotel Lux · All rights reserved. Crafted with <i class="fas fa-heart" style="color:var(--gold);"></i></p>
+        </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+            <button class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+            <img src="" alt="Gallery Image" class="lightbox-image" id="lightboxImage" />
+            <div class="lightbox-caption">
+                <h3 id="lightboxTitle">Deluxe Suite</h3>
+                <p id="lightboxDesc">Spacious luxury bedroom</p>
+            </div>
+            <div class="lightbox-counter" id="lightboxCounter">1 / 12</div>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ============================================
+        // GALLERY JAVASCRIPT
+        // ============================================
+
+        // ===== GALLERY DATA =====
+        const galleryData = [
+            { category: 'rooms', title: 'Deluxe Suite', desc: 'Spacious luxury bedroom', icon: 'fa-bed' },
+            { category: 'rooms', title: 'Marble Bathroom', desc: 'Luxury spa-inspired design', icon: 'fa-bath' },
+            { category: 'rooms', title: 'Living Area', desc: 'Elegant seating and ambiance', icon: 'fa-couch' },
+            { category: 'rooms', title: 'Private Balcony', desc: 'Breathtaking ocean views', icon: 'fa-balcony' },
+            { category: 'dining', title: 'Fine Dining Restaurant', desc: 'Exquisite culinary experiences', icon: 'fa-utensils' },
+            { category: 'dining', title: 'Wine Cellar', desc: 'Curated selection of fine wines', icon: 'fa-wine-glass' },
+            { category: 'dining', title: 'Lobby Lounge', desc: 'Perfect for afternoon tea', icon: 'fa-mug-saucer' },
+            { category: 'spa', title: 'Luxury Spa', desc: 'Rejuvenating wellness treatments', icon: 'fa-spa' },
+            { category: 'spa', title: 'Hot Tub & Sauna', desc: 'Relaxation at its finest', icon: 'fa-hot-tub' },
+            { category: 'spa', title: 'Massage Room', desc: 'Expert wellness therapies', icon: 'fa-hand-sparkles' },
+            { category: 'facilities', title: 'Infinity Pool', desc: 'Stunning panoramic views', icon: 'fa-swimmer' },
+            { category: 'facilities', title: 'Fitness Center', desc: 'State-of-the-art equipment', icon: 'fa-dumbbell' },
+            { category: 'facilities', title: 'Grand Lobby', desc: 'Elegant hotel entrance', icon: 'fa-hotel' }
+        ];
+
+        // ===== DOM ELEMENTS =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const visibleCount = document.getElementById('visibleCount');
+        const noResults = document.getElementById('noResults');
+        const galleryGrid = document.getElementById('galleryGrid');
+
+        // Lightbox elements
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+
+        let currentIndex = 0;
+        let visibleItems = [];
+
+        // ===== FILTER FUNCTION =====
+        function filterGallery() {
+            const activeFilter = document.querySelector('.filter-btn.active');
+            const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+
+            let visible = 0;
+            visibleItems = [];
+
+            galleryItems.forEach((item, index) => {
+                const category = item.getAttribute('data-category');
+                const matchesFilter = filter === 'all' || category === filter;
+
+                if (matchesFilter) {
+                    item.classList.remove('hidden');
+                    visible++;
+                    visibleItems.push(index);
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            visibleCount.textContent = visible;
+
+            if (visible === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+
+            updateFilterCounts();
+        }
+
+        // ===== UPDATE FILTER COUNTS =====
+        function updateFilterCounts() {
+            const categories = {
+                'all': galleryItems.length,
+                'rooms': 0,
+                'dining': 0,
+                'spa': 0,
+                'facilities': 0
+            };
+
+            galleryItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                if (categories[category] !== undefined) {
+                    categories[category]++;
+                }
+            });
+
+            filterBtns.forEach(btn => {
+                const filter = btn.getAttribute('data-filter');
+                const countSpan = btn.querySelector('.count');
+                if (countSpan && categories[filter] !== undefined) {
+                    countSpan.textContent = categories[filter];
+                }
+            });
+        }
+
+        // ===== FILTER BUTTON CLICKS =====
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                filterGallery();
+            });
+        });
+
+        // ===== LIGHTBOX FUNCTIONS =====
+        function openLightbox(index) {
+            if (visibleItems.length === 0) return;
+            
+            currentIndex = index;
+            const dataIndex = visibleItems[currentIndex];
+            const item = galleryItems[dataIndex];
+            const data = galleryData[dataIndex];
+
+            // get the actual image src from the clicked item
+            const imgElement = item.querySelector('.gallery-image img');
+            const imgSrc = imgElement ? imgElement.getAttribute('src') : '';
+
+            lightboxImage.src = imgSrc || 'https://picsum.photos/seed/fallback/800/600';
+            lightboxTitle.textContent = data.title;
+            lightboxDesc.textContent = data.desc;
+            lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function navigateLightbox(direction) {
+            if (visibleItems.length === 0) return;
+            
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = visibleItems.length - 1;
+            if (currentIndex >= visibleItems.length) currentIndex = 0;
+
+            const dataIndex = visibleItems[currentIndex];
+            const data = galleryData[dataIndex];
+            const item = galleryItems[dataIndex];
+            const imgElement = item.querySelector('.gallery-image img');
+            const imgSrc = imgElement ? imgElement.getAttribute('src') : '';
+
+            lightboxImage.src = imgSrc || 'https://picsum.photos/seed/fallback/800/600';
+            lightboxTitle.textContent = data.title;
+            lightboxDesc.textContent = data.desc;
+            lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+        }
+
+        // ===== GALLERY ITEM CLICKS =====
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                const activeFilter = document.querySelector('.filter-btn.active');
+                const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+                
+                if (filter === 'all' || filter === category) {
+                    const visibleIndex = visibleItems.indexOf(index);
+                    if (visibleIndex !== -1) {
+                        openLightbox(visibleIndex);
+                    }
+                }
+            });
+        });
+
+        // ===== LIGHTBOX EVENT LISTENERS =====
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+        lightboxNext.addEventListener('click', () => navigateLightbox(1));
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            }
+        });
+
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+        // ===== HEADER SCROLL EFFECT =====
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===== INITIAL FILTER =====
+        filterGallery();
+
+        console.log('Gallery page loaded successfully!');
+    </script>
+</body>
+</html>

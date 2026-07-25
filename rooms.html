@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Rooms · Hotel Lux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================
+               PROFESSIONAL COLOR SCHEME
+               ============================================ */
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E8D5A3;
+            --gold-dark: #A8893A;
+            --navy: #1A2332;
+            --navy-light: #2C3E50;
+            --cream: #F8F5F0;
+            --white: #FFFFFF;
+            --dark: #0D1421;
+            --text: #2C3E50;
+            --text-light: #6B7A8A;
+            --shadow: 0 8px 30px rgba(26, 35, 50, 0.12);
+            --shadow-hover: 0 15px 50px rgba(26, 35, 50, 0.2);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+               HEADER
+               ============================================ */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            transition: var(--transition);
+        }
+
+        .main-header.scrolled {
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-menu ul li a:hover::after,
+        .nav-menu ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu ul li a.active {
+            color: var(--gold);
+        }
+
+        .nav-btn {
+            padding: 8px 22px !important;
+            border-radius: 50px !important;
+            font-weight: 600 !important;
+            font-size: 13px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-btn i {
+            margin-right: 6px;
+        }
+
+        .nav-btn::after {
+            display: none !important;
+        }
+
+        .nav-login {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark)) !important;
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .nav-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(201, 168, 76, 0.4) !important;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold)) !important;
+        }
+
+        .nav-register {
+            background: transparent !important;
+            color: var(--gold) !important;
+            border: 2px solid var(--gold) !important;
+        }
+
+        .nav-register:hover {
+            background: var(--gold) !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3) !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--navy);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* ============================================
+               PAGE HEADER
+               ============================================ */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            color: var(--white);
+            padding: 160px 0 60px;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header .badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.15);
+            color: var(--gold-light);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 span {
+            color: var(--gold);
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        /* ============================================
+               FILTERS
+               ============================================ */
+        .filters-section {
+            padding: 40px 0 30px;
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+        }
+
+        .filters-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            background: var(--cream);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        .filter-btn:hover {
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--gold);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .filter-btn .count {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0 8px;
+            border-radius: 50px;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+
+        .filter-btn.active .count {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--cream);
+            padding: 4px 4px 4px 16px;
+            border-radius: 50px;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .search-box:focus-within {
+            border-color: var(--gold);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.08);
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 10px 0;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text);
+            outline: none;
+            min-width: 200px;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-light);
+        }
+
+        .search-box button {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .search-box button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .results-count {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .results-count span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* ============================================
+               ROOMS GRID
+               ============================================ */
+        .rooms-section {
+            padding: 50px 0 90px;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .room-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(201, 168, 76, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .room-card:nth-child(1) { animation-delay: 0.1s; }
+        .room-card:nth-child(2) { animation-delay: 0.2s; }
+        .room-card:nth-child(3) { animation-delay: 0.3s; }
+        .room-card:nth-child(4) { animation-delay: 0.4s; }
+        .room-card:nth-child(5) { animation-delay: 0.5s; }
+        .room-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .room-card.hidden {
+            display: none;
+        }
+
+        .room-card .room-image {
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+            background: #1A2332;
+        }
+
+        .room-card .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .room-card:hover .room-image img {
+            transform: scale(1.05);
+        }
+
+        .room-card .room-image .room-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--gold);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .room-card .room-image .price-tag {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .room-card .room-image .price-tag span {
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .room-card .room-image .room-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 70px;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: 0;
+        }
+
+        .room-card .room-info {
+            padding: 24px 24px 28px;
+        }
+
+        .room-card .room-info .room-category {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .room-card .room-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .room-card .room-info .room-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+
+        .room-card .room-info .room-features {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .room-card .room-info .room-features span {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .room-card .room-info .room-features span i {
+            color: var(--gold);
+            margin-right: 4px;
+            font-size: 13px;
+        }
+
+        .room-card .room-info .room-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-outline-sm {
+            display: inline-block;
+            padding: 8px 24px;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-family: inherit;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn-outline-sm:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .btn-primary-sm {
+            display: inline-block;
+            padding: 8px 24px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.25);
+        }
+
+        .btn-primary-sm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(201, 168, 76, 0.35);
+        }
+
+        /* ============================================
+               NO RESULTS
+               ============================================ */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results i {
+            font-size: 60px;
+            color: var(--gold);
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .no-results h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .no-results p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* ============================================
+               FOOTER
+               ============================================ */
+        .main-footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+            font-size: 26px;
+        }
+
+        .footer-brand p {
+            margin: 12px 0 20px;
+            max-width: 300px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        .footer-brand .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-brand .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-brand .social-icons a:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-grid h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .footer-grid ul {
+            list-style: none;
+        }
+
+        .footer-grid ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-grid ul li a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-grid ul li a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 24px 0;
+            font-size: 13px;
+            opacity: 0.4;
+        }
+
+        /* ============================================
+               RESPONSIVE
+               ============================================ */
+        @media (max-width: 1024px) {
+            .rooms-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                transition: all 0.4s ease;
+                overflow-y: auto;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu ul {
+                flex-direction: column;
+                padding: 30px 24px;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .nav-menu ul li {
+                width: 100%;
+            }
+
+            .nav-menu ul li a {
+                display: block;
+                padding: 10px 0;
+                font-size: 16px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            }
+
+            .nav-login,
+            .nav-register {
+                background: transparent !important;
+                color: var(--text) !important;
+                padding: 10px 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                font-weight: 500 !important;
+            }
+
+            .nav-login:hover,
+            .nav-register:hover {
+                background: transparent !important;
+                color: var(--gold) !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .filters-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .search-box input {
+                flex: 1;
+                min-width: auto;
+            }
+
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .filter-buttons {
+                gap: 6px;
+            }
+
+            .filter-btn {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+
+            .search-box {
+                padding: 2px 2px 2px 12px;
+            }
+
+            .search-box input {
+                font-size: 13px;
+                padding: 8px 0;
+            }
+
+            .search-box button {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .room-card .room-image {
+                height: 180px;
+            }
+
+            .room-card .room-info {
+                padding: 16px 16px 20px;
+            }
+
+            .room-card .room-info h3 {
+                font-size: 19px;
+            }
+
+            .room-card .room-info .room-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .room-card .room-info .room-actions .btn-outline-sm,
+            .room-card .room-info .room-actions .btn-primary-sm {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header" id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                    <span class="logo-text">HOTEL <span>· LUX</span></span>
+                </a>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="rooms.html" class="active">Rooms</a></li>
+                    <li><a href="room-details.html">Room Details</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="nav-btn nav-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li><a href="register.html" class="nav-btn nav-register"><i class="fas fa-user-plus"></i> Register</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+        <div class="container">
+            <span class="badge">✦ Accommodations</span>
+            <h1>Our <span>Rooms</span></h1>
+            <p>Luxury accommodations designed for your comfort and pleasure</p>
+        </div>
+    </section>
+
+    <!-- ===== FILTERS ===== -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-wrapper">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        All <span class="count">6</span>
+                    </button>
+                    <button class="filter-btn" data-filter="suite">
+                        Suites <span class="count">3</span>
+                    </button>
+                    <button class="filter-btn" data-filter="family">
+                        Family <span class="count">2</span>
+                    </button>
+                    <button class="filter-btn" data-filter="standard">
+                        Standard <span class="count">1</span>
+                    </button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search rooms..." />
+                    <button type="button" id="searchBtn"><i class="fas fa-search"></i> Search</button>
+                </div>
+            </div>
+            <div class="results-count" id="resultsCount">
+                Showing <span id="visibleCount">6</span> rooms
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROOMS GRID ===== -->
+    <section class="rooms-section">
+        <div class="container">
+            <div class="rooms-grid" id="roomsGrid">
+
+                <!-- Room 1 - Deluxe Suite -->
+                <div class="room-card" data-category="suite" data-name="Deluxe Suite">
+                    <div class="room-image">
+                        <!-- IMAGE 1: Deluxe Suite -->
+                        <img src="https://i.pinimg.com/736x/d8/39/1b/d8391b70aab682ee894f818acc754776.jpg" alt="Deluxe Suite" />
+                        <span class="room-badge">✦ Best Seller</span>
+                        <div class="room-icon"><i class="fas fa-bed"></i></div>
+                        <div class="price-tag">$299 <span>/night</span></div>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-category">Suite</div>
+                        <h3>Deluxe Suite</h3>
+                        <p class="room-desc">Spacious suite with ocean view, king bed, private balcony, and luxurious marble bathroom.</p>
+                        <div class="room-features">
+                            <span><i class="fas fa-wifi"></i> WiFi</span>
+                            <span><i class="fas fa-tv"></i> Smart TV</span>
+                            <span><i class="fas fa-hot-tub"></i> Jacuzzi</span>
+                            <span><i class="fas fa-coffee"></i> Coffee Maker</span>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-details.html" class="btn-outline-sm">View Details</a>
+                            <a href="booking.html" class="btn-primary-sm">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 2 - Penthouse Suite -->
+                <div class="room-card" data-category="suite" data-name="Penthouse Suite">
+                    <div class="room-image">
+                        <!-- IMAGE 2: Penthouse Suite -->
+                        <img src="https://i.pinimg.com/736x/ad/66/55/ad66550ac8128d258f11f307fe4563db.jpg" alt="Penthouse Suite" />
+                        <span class="room-badge">✦ Premium</span>
+                        <div class="room-icon"><i class="fas fa-crown"></i></div>
+                        <div class="price-tag">$599 <span>/night</span></div>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-category">Suite</div>
+                        <h3>Penthouse Suite</h3>
+                        <p class="room-desc">Ultimate luxury with private terrace, panoramic city views, butler service, and private chef.</p>
+                        <div class="room-features">
+                            <span><i class="fas fa-wifi"></i> WiFi</span>
+                            <span><i class="fas fa-tv"></i> Smart TV</span>
+                            <span><i class="fas fa-concierge-bell"></i> Butler</span>
+                            <span><i class="fas fa-wine-glass-alt"></i> Minibar</span>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-details.html" class="btn-outline-sm">View Details</a>
+                            <a href="booking.html" class="btn-primary-sm">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 3 - Executive Suite -->
+                <div class="room-card" data-category="suite" data-name="Executive Suite">
+                    <div class="room-image">
+                        <!-- IMAGE 3: Executive Suite -->
+                        <img src="https://i.pinimg.com/1200x/f9/51/c6/f951c63b02c157c2388a41419e4d33e6.jpg" alt="Executive Suite" />
+                        <span class="room-badge">✦ Business</span>
+                        <div class="room-icon"><i class="fas fa-briefcase"></i></div>
+                        <div class="price-tag">$399 <span>/night</span></div>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-category">Suite</div>
+                        <h3>Executive Suite</h3>
+                        <p class="room-desc">Designed for business travelers with separate work area, meeting space, and premium amenities.</p>
+                        <div class="room-features">
+                            <span><i class="fas fa-wifi"></i> WiFi</span>
+                            <span><i class="fas fa-tv"></i> Smart TV</span>
+                            <span><i class="fas fa-laptop"></i> Workstation</span>
+                            <span><i class="fas fa-phone"></i> Direct Line</span>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-details.html" class="btn-outline-sm">View Details</a>
+                            <a href="booking.html" class="btn-primary-sm">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 4 - Family Room -->
+                <div class="room-card" data-category="family" data-name="Family Room">
+                    <div class="room-image">
+                        <!-- IMAGE 4: Family Room -->
+                        <img src="https://i.pinimg.com/736x/65/80/29/658029a31b134a045200331b32976459.jpg" alt="Family Room" />
+                        <span class="room-badge">✦ Family</span>
+                        <div class="room-icon"><i class="fas fa-users"></i></div>
+                        <div class="price-tag">$249 <span>/night</span></div>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-category">Family</div>
+                        <h3>Family Room</h3>
+                        <p class="room-desc">Perfect for families with two queen beds, kids' play area, and connecting room options available.</p>
+                        <div class="room-features">
+                            <span><i class="fas fa-wifi"></i> WiFi</span>
+                            <span><i class="fas fa-tv"></i> Smart TV</span>
+                            <span><i class="fas fa-utensils"></i> Kitchenette</span>
+                            <span><i class="fas fa-gamepad"></i> Kids Zone</span>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-details.html" class="btn-outline-sm">View Details</a>
+                            <a href="booking.html" class="btn-primary-sm">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 5 - Family Suite -->
+                <div class="room-card" data-category="family" data-name="Family Suite">
+                    <div class="room-image">
+                        <!-- IMAGE 5: Family Suite -->
+                        <img src="https://i.pinimg.com/736x/a9/8a/38/a98a38738cc2f53360c10b39647c6da2.jpg" alt="Family Suite" />
+                        <span class="room-badge">✦ Deluxe</span>
+                        <div class="room-icon"><i class="fas fa-home"></i></div>
+                        <div class="price-tag">$349 <span>/night</span></div>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-category">Family</div>
+                        <h3>Family Suite</h3>
+                        <p class="room-desc">Spacious family suite with separate bedrooms, living room, full kitchen, and dining area.</p>
+                        <div class="room-features">
+                            <span><i class="fas fa-wifi"></i> WiFi</span>
+                            <span><i class="fas fa-tv"></i> Smart TV</span>
+                            <span><i class="fas fa-utensils"></i> Full Kitchen</span>
+                            <span><i class="fas fa-sofa"></i> Living Room</span>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-details.html" class="btn-outline-sm">View Details</a>
+                            <a href="booking.html" class="btn-primary-sm">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 6 - Standard Room -->
+                <div class="room-card" data-category="standard" data-name="Standard Room">
+                    <div class="room-image">
+                        <!-- IMAGE 6: Standard Room -->
+                        <img src="https://i.pinimg.com/736x/20/12/ca/2012cafa2cdeb1854fdd967c8f38c3cf.jpg" alt="Standard Room" />
+                        <span class="room-badge">✦ Value</span>
+                        <div class="room-icon"><i class="fas fa-hotel"></i></div>
+                        <div class="price-tag">$159 <span>/night</span></div>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-category">Standard</div>
+                        <h3>Standard Room</h3>
+                        <p class="room-desc">Comfortable room with queen bed, city view, and all essential amenities for a pleasant stay.</p>
+                        <div class="room-features">
+                            <span><i class="fas fa-wifi"></i> WiFi</span>
+                            <span><i class="fas fa-tv"></i> Smart TV</span>
+                            <span><i class="fas fa-coffee"></i> Coffee Maker</span>
+                            <span><i class="fas fa-phone"></i> Direct Line</span>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-details.html" class="btn-outline-sm">View Details</a>
+                            <a href="booking.html" class="btn-primary-sm">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults">
+                <i class="fas fa-search"></i>
+                <h3>No Rooms Found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <span class="logo-text">HOTEL <span>· LUX</span></span>
+                <p>Luxury hospitality since 2010. Creating unforgettable experiences for our guests around the world.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="rooms.html">Our Rooms</a></li>
+                    <li><a href="booking.html">Book Now</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Spa &amp; Wellness</a></li>
+                    <li><a href="services.html">Fine Dining</a></li>
+                    <li><a href="services.html">Events</a></li>
+                    <li><a href="services.html">Concierge</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-phone" style="color:var(--gold);"></i> +1 234 567 890</li>
+                    <li><i class="fas fa-envelope" style="color:var(--gold);"></i> info@hotellux.com</li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> 123 Luxury Ave, NYC</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hotel Lux · All rights reserved. Crafted with <i class="fas fa-heart" style="color:var(--gold);"></i></p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ============================================
+        // ROOMS PAGE JAVASCRIPT
+        // ============================================
+
+        // ===== DOM ELEMENTS =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const roomCards = document.querySelectorAll('.room-card');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const visibleCount = document.getElementById('visibleCount');
+        const noResults = document.getElementById('noResults');
+        const roomsGrid = document.getElementById('roomsGrid');
+
+        // ===== FILTER FUNCTION =====
+        function filterRooms() {
+            const activeFilter = document.querySelector('.filter-btn.active');
+            const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            let visible = 0;
+
+            roomCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const name = card.getAttribute('data-name').toLowerCase();
+                const desc = card.querySelector('.room-desc').textContent.toLowerCase();
+                const features = card.querySelector('.room-features').textContent.toLowerCase();
+
+                const matchesFilter = filter === 'all' || category === filter;
+                const matchesSearch = !searchTerm || 
+                    name.includes(searchTerm) || 
+                    desc.includes(searchTerm) || 
+                    features.includes(searchTerm);
+
+                if (matchesFilter && matchesSearch) {
+                    card.classList.remove('hidden');
+                    visible++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Update count
+            visibleCount.textContent = visible;
+
+            // Show/hide no results
+            if (visible === 0) {
+                noResults.classList.add('show');
+                roomsGrid.style.display = 'none';
+            } else {
+                noResults.classList.remove('show');
+                roomsGrid.style.display = 'grid';
+            }
+
+            // Update filter button counts
+            updateFilterCounts();
+        }
+
+        // ===== UPDATE FILTER COUNTS =====
+        function updateFilterCounts() {
+            const categories = {
+                'all': roomCards.length,
+                'suite': 0,
+                'family': 0,
+                'standard': 0
+            };
+
+            roomCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (categories[category] !== undefined) {
+                    categories[category]++;
+                }
+            });
+
+            filterBtns.forEach(btn => {
+                const filter = btn.getAttribute('data-filter');
+                const countSpan = btn.querySelector('.count');
+                if (countSpan && categories[filter] !== undefined) {
+                    countSpan.textContent = categories[filter];
+                }
+            });
+        }
+
+        // ===== FILTER BUTTON CLICKS =====
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                filterRooms();
+            });
+        });
+
+        // ===== SEARCH FUNCTIONALITY =====
+        function performSearch() {
+            filterRooms();
+        }
+
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        searchBtn.addEventListener('click', performSearch);
+
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+        // ===== HEADER SCROLL EFFECT =====
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===== INITIAL FILTER =====
+        filterRooms();
+
+        console.log('Rooms page loaded successfully!');
+    </script>
+</body>
+</html>
